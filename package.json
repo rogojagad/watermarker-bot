@@ -1,0 +1,33 @@
+{
+  "name": "watermarker-bot",
+  "version": "1.0.0",
+  "description": "A Telegram bot to add watermark on image",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogojagad/watermarker-bot.git"
+  },
+  "author": "Rogo Jagad Alit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rogojagad/watermarker-bot/issues"
+  },
+  "homepage": "https://github.com/rogojagad/watermarker-bot#readme",
+  "devDependencies": {
+    "@types/node": "^16.4.13",
+    "@types/sharp": "^0.28.5",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "sharp": "^0.28.3"
+  }
+}
