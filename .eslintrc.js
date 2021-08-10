@@ -11,7 +11,7 @@ module.exports = {
     'import',
   ],
   rules: {
-    'no-console': 'warn',
+    'no-console': ['warn', { allow: ['error'] }],
     'import/order': [
       'error',
       {
