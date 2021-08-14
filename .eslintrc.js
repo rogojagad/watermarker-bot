@@ -1,14 +1,16 @@
 module.exports = {
+  root: true,
   extends: [
-    'airbnb-base',
+    'airbnb-typescript/base'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
+    project: ['./tsconfig.json']
   },
   plugins: [
-    'import',
+    '@typescript-eslint'
   ],
   rules: {
     'no-console': ['warn', { allow: ['error'] }],
@@ -16,8 +18,8 @@ module.exports = {
       'error',
       {
         'newlines-between': 'always',
-        alphabetize: { order: 'asc' },
-      },
+        alphabetize: { order: 'asc' }
+      }
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
@@ -30,16 +32,15 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         ts: 'never',
-        tsx: 'never',
-      },
-    ],
+        tsx: 'never'
+      }
+    ]
   },
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.ts'],
-      },
-    },
-  },
-
-};
+        extensions: ['.ts']
+      }
+    }
+  }
+}
