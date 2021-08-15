@@ -4,13 +4,11 @@ import express from 'express';
 
 import botBootstraper from './bot/bot.bootstraper';
 import botFactory from './bot/bot.factory';
+import {
+  env, port, token, url,
+} from './common/common.constant';
 
 process.env.NTBA_FIX_319 = '1';
-
-const port = process.env.PORT || 5000;
-const token = process.env.TELEGRAM_TOKEN || '';
-const env = process.env.NODE_ENV || '';
-const url = process.env.APP_HOST;
 
 const botClient = botFactory.createOneBotByEnv(env);
 botBootstraper.bootstrap(botClient);
@@ -27,7 +25,7 @@ const setupApp = (app: express.Express) => {
   });
 
   app.listen(port, () => {
-    console.log(`serving on port ${port}`);
+    console.info(`serving on port ${port}`);
   });
 };
 

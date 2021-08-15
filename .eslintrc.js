@@ -13,7 +13,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    'no-console': ['warn', { allow: ['error'] }],
+    'no-console': ['warn', { allow: ['error', 'info'] }],
     'import/order': [
       'error',
       {

@@ -6,4 +6,5 @@
   "eslint.format.enable": true,
   "eslint.trace.server": "verbose",
   "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
 }
