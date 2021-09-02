@@ -1,8 +1,8 @@
-name: Pull Request Build
+name: Merge Main Build
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
