@@ -27,4 +27,4 @@ This explains how this bot works, use this at your own risk.
 - Telegram Bot Api (Telegram Bot library)
 
 ## Thanks To:
-- Indonesian Ministry of Communication anf Informatics for inspiring me to made this simple bot
+- Indonesian Ministry of Communication and Informatics for inspiring me to made this simple bot
