@@ -13,18 +13,20 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    'no-console': ['warn', { allow: ['error', 'info'] }],
+    'no-console': ['warn', { allow: ['error', 'info', 'time', 'timeEnd'] }],
+    "import/prefer-default-export": "off",
     'import/order': [
       'error',
       {
         'newlines-between': 'always',
         alphabetize: { order: 'asc' }
-      }
+      },
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/naming-convention': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 import Sharp from 'sharp';
 
 import imageConstants from './image.constants';
@@ -13,7 +11,7 @@ async function processImage(imageLocation: Buffer, watermarkText: string): Promi
     imageConstants.WATERMARK_SVG.replace('{watermarkText}', watermarkText),
   );
 
-  image.composite([{ input: textWatermark, gravity: WATERMARK_GRAVITY.SOUTH }]);
+  image.composite([{ input: textWatermark, gravity: WATERMARK_GRAVITY.SOUTHEAST }]);
   const imgBuffer = await image.toBuffer();
 
   console.info('done');
