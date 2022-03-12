@@ -14,6 +14,7 @@ module.exports = {
   ],
   rules: {
     'no-console': ['warn', { allow: ['error', 'info', 'time', 'timeEnd'] }],
+    'comma-dangle': ["error", "never"],
     "import/prefer-default-export": "off",
     'import/order': [
       'error',
@@ -27,6 +28,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/comma-dangle': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -36,7 +38,14 @@ module.exports = {
         ts: 'never',
         tsx: 'never'
       }
-    ]
+    ],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        alphabetize: { order: 'asc' }
+      }
+    ],
   },
   settings: {
     'import/resolver': {
@@ -45,4 +54,4 @@ module.exports = {
       }
     }
   }
-}
+};

@@ -1,10 +1,11 @@
 {
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.alwaysShowStatus": true,
+  "javascript.format.semicolons": "insert",
+  "editor.tabSize": 2,
+  //"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  },
-  "eslint.format.enable": true,
-  "eslint.trace.server": "verbose",
-  "editor.formatOnSave": true,
-  "eslint.alwaysShowStatus": true,
+  }
 }

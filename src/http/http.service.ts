@@ -1,10 +1,10 @@
-import { PhotoStatusResponse } from '../bot/bot.interface';
+import { IPhotoStatusResponse } from '../bot/bot.interface';
 
 import httpRepository from './http.repository';
 
-const getPhotoStatus = async (endpoint: string): Promise<PhotoStatusResponse> => {
+const getPhotoStatus = async (endpoint: string): Promise<IPhotoStatusResponse> => {
   try {
-    const response = await httpRepository.get<PhotoStatusResponse>(endpoint);
+    const response = await httpRepository.get<IPhotoStatusResponse>(endpoint);
 
     return response;
   } catch (error) {

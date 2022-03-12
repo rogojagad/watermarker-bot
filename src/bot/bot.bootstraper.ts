@@ -11,8 +11,20 @@ const bootstrap = (bot: TelegramBot): void => {
     botHandler.pingHandler(bot, msg);
   });
 
+  bot.onText(/\/howto/, (msg: TelegramBot.Message) => {
+    botHandler.howToHandler(bot, msg);
+  });
+
   bot.on('photo', (msg: TelegramBot.Message) => {
     botHandler.imageHandler(bot, msg);
+  });
+
+  bot.onText(/\/start/, (msg: TelegramBot.Message) => {
+    botHandler.startHandler(bot, msg);
+  });
+
+  bot.on('callback_query', (callbackQuery: TelegramBot.CallbackQuery) => {
+    botHandler.callbackQueryHandler(bot, callbackQuery);
   });
 };
 
