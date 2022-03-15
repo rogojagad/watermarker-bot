@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build Pull Request ${{ github.event.number }}
+    name: Build Main Branch
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
