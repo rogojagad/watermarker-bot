@@ -1,3 +1,5 @@
+import TelegramBot from 'node-telegram-bot-api';
+
 interface PhotoStatusResult {
   file_id: string,
   file_unique_id: string,
@@ -5,7 +7,11 @@ interface PhotoStatusResult {
   file_path: string
 }
 
-export interface PhotoStatusResponse {
+export interface IPhotoStatusResponse {
   ok: boolean,
   result: PhotoStatusResult
+}
+
+export interface ICallbackQueryHandler {
+  (bot: TelegramBot, message: TelegramBot.Message): void
 }
