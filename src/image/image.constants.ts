@@ -1,7 +1,6 @@
 const WATERMARK_SVG = `
-    <svg>
-    <rect x="0" y="0" width="500" height="85" fill="#F8F8F8" fill-opacity="0"/>
-    <text x="30%" y ="80%" font-size="25" fill="#f0f0f0">{watermarkText}</text>
+    <svg width="{watermarkWidth}" height="300">
+        <text font-family="Arial, Helvetica, sans-serif" y="88%" font-size="30" fill="#6D6F71">{watermarkText}</text>
     </svg>
     `;
 
