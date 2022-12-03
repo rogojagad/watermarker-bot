@@ -6,9 +6,11 @@ import { WATERMARK_GRAVITY } from './image.enum';
 async function processImage(imageLocation: Buffer, watermarkText: string): Promise<Buffer> {
   console.time('image processing execution time');
   const image = Sharp(imageLocation);
+  const imageMetadata = await image.metadata();
+  const width = imageMetadata.width ? imageMetadata.width * (2 / 3) : 300;
 
   const textWatermark = Buffer.from(
-    imageConstants.WATERMARK_SVG.replace('{watermarkText}', watermarkText),
+    imageConstants.WATERMARK_SVG.replace('{watermarkText}', watermarkText).replace('{watermarkWidth}', width.toString())
   );
 
   image.composite([{ input: textWatermark, gravity: WATERMARK_GRAVITY.SOUTHEAST }]);
