@@ -1,13 +1,20 @@
 import Sharp from 'sharp';
 
+import httpService from '../http/http.service';
+
 import imageConstants from './image.constants';
 import { WATERMARK_GRAVITY } from './image.enum';
 
-async function processImage(imageLocation: Buffer, watermarkText: string): Promise<Buffer> {
+async function getAndProcessImage(fileId: string, watermarkText: string): Promise<Buffer> {
+  const photoStatusResponse = await httpService.getPhotoStatus(fileId);
+  const photoPath = photoStatusResponse.result.file_path;
+
+  const imageBuffer = await httpService.getPhoto(photoPath);
+
   console.time('image processing execution time');
-  const image = Sharp(imageLocation);
+  const image = Sharp(imageBuffer);
   const imageMetadata = await image.metadata();
-  const width = imageMetadata.width ? imageMetadata.width * (2 / 3) : 300;
+  const width = imageMetadata.width ? imageMetadata.width * (1 / 3) : 300;
 
   const textWatermark = Buffer.from(
     imageConstants.WATERMARK_SVG.replace('{watermarkText}', watermarkText).replace('{watermarkWidth}', width.toString())
@@ -22,4 +29,4 @@ async function processImage(imageLocation: Buffer, watermarkText: string): Promi
   return imgBuffer;
 }
 
-export default { processImage };
+export default { getAndProcessImage };

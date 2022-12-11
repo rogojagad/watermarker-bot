@@ -5,12 +5,12 @@ import express from 'express';
 import botBootstraper from './bot/bot.bootstraper';
 import botFactory from './bot/bot.factory';
 import {
-  env, port, token, url,
+  env, port, token, url
 } from './common/common.constant';
 
 process.env.NTBA_FIX_319 = '1';
 
-console.log(`Environment: ${env}`)
+console.info(`Environment: ${env}`);
 
 const botClient = botFactory.createOneBotByEnv(env);
 botBootstraper.bootstrap(botClient);
@@ -35,6 +35,6 @@ const app = express();
 setupApp(app);
 
 if (env === 'production') {
-  console.log(`Setting up webhook on ${url}/bot${token}`);
+  console.info(`Setting up webhook on ${url}/bot${token}`);
   botClient.setWebHook(`${url}/bot${token}`);
 }
