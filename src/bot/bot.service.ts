@@ -1,18 +1,18 @@
 import TelegramBot from 'node-telegram-bot-api';
 
-import httpService from '../http/http.service';
 import imageService from '../image/image.service';
 
-import { getPhotoApi, getPhotoStatusApi } from './bot.constant';
 import { BotCommandEnum } from './bot.enum';
 import { ICallbackQueryHandler } from './bot.interface';
 import { aboutMessage, howToMessage, startMessage } from './bot.lang';
 
-const pingHandler = (bot: TelegramBot, message: TelegramBot.Message): void => {
+const handlePing = (bot: TelegramBot, message: TelegramBot.Message): void => {
   bot.sendMessage(message.chat.id, 'PONG!');
 };
 
-const imageHandler = async (bot: TelegramBot, message: TelegramBot.Message): Promise<void> => {
+const handleImageMessage = async (
+  bot: TelegramBot, message: TelegramBot.Message
+): Promise<void> => {
   const messageId = message.message_id;
   const chatId = message.chat.id;
 
@@ -39,22 +39,17 @@ const imageHandler = async (bot: TelegramBot, message: TelegramBot.Message): Pro
   const sentPhotoData = photoMessagePayload?.pop();
   const fileId = sentPhotoData?.file_id || '';
 
-  const photoStatusResponse = await httpService.getPhotoStatus(getPhotoStatusApi.replace('{fileId}', fileId));
-  const photoPath = photoStatusResponse.result.file_path;
-  const photoSourceUrl = getPhotoApi.replace('{filePath}', photoPath);
+  const imageResultBuffer = await imageService.getAndProcessImage(fileId, watermarkText);
 
-  const imageBuffer = await httpService.getPhoto(photoSourceUrl);
-  const imageResultBuffer = await imageService.processImage(imageBuffer, watermarkText);
-
-  await bot.sendPhoto(chatId, imageResultBuffer);
   await bot.sendMessage(chatId, 'This is your bookmarked image');
+  await bot.sendPhoto(chatId, imageResultBuffer);
 };
 
-const howToHandler = (bot: TelegramBot, message: TelegramBot.Message): void => {
+const handleHowToQuery = (bot: TelegramBot, message: TelegramBot.Message): void => {
   bot.sendMessage(message.chat.id, howToMessage);
 };
 
-const startHandler = (bot: TelegramBot, message: TelegramBot.Message): void => {
+const handleStartQuery = (bot: TelegramBot, message: TelegramBot.Message): void => {
   bot.sendMessage(
     message.chat.id,
     startMessage.replace('{name}', message.chat.first_name || ''),
@@ -69,16 +64,16 @@ const startHandler = (bot: TelegramBot, message: TelegramBot.Message): void => {
   );
 };
 
-const aboutHandler = (bot: TelegramBot, message: TelegramBot.Message): void => {
+const handleAboutQuery = (bot: TelegramBot, message: TelegramBot.Message): void => {
   bot.sendMessage(message.chat.id, aboutMessage);
 };
 
 const queryDataToHandlerMap = new Map<string, ICallbackQueryHandler>([
-  [BotCommandEnum.HOW_TO, howToHandler],
-  [BotCommandEnum.ABOUT, aboutHandler]
+  [BotCommandEnum.HOW_TO, handleHowToQuery],
+  [BotCommandEnum.ABOUT, handleAboutQuery]
 ]);
 
-const callbackQueryHandler = (bot: TelegramBot, query: TelegramBot.CallbackQuery): void => {
+const handleCallbackQuery = (bot: TelegramBot, query: TelegramBot.CallbackQuery): void => {
   const queryData = query.data || '';
   const message = query.message as TelegramBot.Message;
   const chatId = message.chat.id;
@@ -94,9 +89,9 @@ const callbackQueryHandler = (bot: TelegramBot, query: TelegramBot.CallbackQuery
 };
 
 export default {
-  callbackQueryHandler,
-  howToHandler,
-  imageHandler,
-  pingHandler,
-  startHandler
+  handleCallbackQuery,
+  handleHowToQuery,
+  handleImageMessage,
+  handlePing,
+  handleStartQuery
 };

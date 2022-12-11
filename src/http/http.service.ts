@@ -1,8 +1,11 @@
+import { getPhotoApi, getPhotoStatusApi } from '../bot/bot.constant';
 import { IPhotoStatusResponse } from '../bot/bot.interface';
 
 import httpRepository from './http.repository';
 
-const getPhotoStatus = async (endpoint: string): Promise<IPhotoStatusResponse> => {
+const getPhotoStatus = async (fileId: string): Promise<IPhotoStatusResponse> => {
+  const endpoint = getPhotoStatusApi.replace('{fileId}', fileId);
+
   try {
     const response = await httpRepository.get<IPhotoStatusResponse>(endpoint);
 
@@ -13,7 +16,8 @@ const getPhotoStatus = async (endpoint: string): Promise<IPhotoStatusResponse> =
   }
 };
 
-const getPhoto = async (endpoint: string): Promise<Buffer> => {
+const getPhoto = async (photoPath: string): Promise<Buffer> => {
+  const endpoint = getPhotoApi.replace('{filePath}', photoPath);
   try {
     const response = await httpRepository.getBuffer(endpoint);
 
