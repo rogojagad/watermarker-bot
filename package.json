@@ -4,7 +4,6 @@
   "description": "A Telegram bot to add watermark on image",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm run build",
     "build": "tsc",
     "start": "node dist/src/index.js",
     "start:dev": "nodemon --watch src -e ts --exec npm run start",
