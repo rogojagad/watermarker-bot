@@ -10,6 +10,9 @@ COPY . .
 # Install dependency
 RUN npm i -f
 
+# Compile
+RUN npm run build
+
 # Expose port
 EXPOSE 5000
 
